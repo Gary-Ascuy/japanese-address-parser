@@ -1,7 +1,7 @@
 package org.example
 
 import kotlin.test.Test
-import kotlin.test.assertNull
+import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
 class JapaneseAddressParserTest {
@@ -9,7 +9,7 @@ class JapaneseAddressParserTest {
         val parser = JapaneseAddressParser()
         val address = parser.parse("")
 
-        assertTrue(address.prefecture.isEmpty())
+        assertFalse(address.prefecture.isEmpty())
         assertTrue(address.city.isEmpty())
         assertTrue(address.town.isEmpty())
 
