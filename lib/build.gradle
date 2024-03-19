@@ -10,7 +10,10 @@ plugins {
     alias(libs.plugins.jvm)
 
     // Apply the java-library plugin for API and implementation separation.
+    id 'java-library'
+
     id 'maven-publish'
+    id 'com.ncorti.ktfmt.gradle' version '0.17.0'
 }
 
 repositories {
