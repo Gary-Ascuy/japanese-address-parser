@@ -12,6 +12,6 @@ class JapaneseAddressParserTest {
     @JsonFileSource(resources = ["/json/parse-japanese-address-data-val.json"])
     fun shouldParseJapaneseAddress(@ConvertWith(TestDataConverter::class) data: JapaneseAddressTestData) {
         val address = parser.parse(data.text)
-        assertEquals(expected = data.result, actual = address)
+        assertEquals(expected = data.result, actual = address, message = "Failed to parse address: ${data.text}")
     }
 }
