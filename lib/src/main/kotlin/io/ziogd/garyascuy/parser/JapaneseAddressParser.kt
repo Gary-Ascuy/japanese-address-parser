@@ -1,4 +1,4 @@
-package org.example
+package io.ziogd.garyascuy.parser
 
 class JapaneseAddressParser {
   fun parse(address: String): JapaneseAddress {

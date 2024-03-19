@@ -1,4 +1,4 @@
-package org.example
+package io.ziogd.garyascuy.parser
 
 import kotlin.test.Test
 import kotlin.test.assertEquals

@@ -1,4 +1,4 @@
-package org.example
+package io.ziogd.garyascuy.parser
 
 import jakarta.json.JsonObject
 import org.junit.jupiter.api.extension.ParameterContext

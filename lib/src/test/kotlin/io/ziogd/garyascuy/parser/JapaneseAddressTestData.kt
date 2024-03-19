@@ -1,4 +1,4 @@
-package org.example
+package io.ziogd.garyascuy.parser
 
 data class JapaneseAddressTestData(
     var text: String = "",
