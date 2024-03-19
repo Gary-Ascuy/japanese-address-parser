@@ -1,5 +1,6 @@
 package org.example
 
+import kotlin.test.Test
 import kotlin.test.assertEquals
 import net.joshka.junit.json.params.JsonFileSource
 import org.junit.jupiter.params.ParameterizedTest
@@ -13,8 +14,13 @@ class JapaneseAddressParserTest {
   fun shouldParseJapaneseAddress(
       @ConvertWith(TestDataConverter::class) data: JapaneseAddressTestData
   ) {
-    val address = parser.parse(data.text)
-    assertEquals(
-        expected = data.result, actual = address, message = "Failed to parse address: ${data.text}")
+    val actual = parser.parse(data.text)
+    assertEquals(expected = data.result, actual, "Failed to parse address: ${data.text}")
+  }
+
+  @Test
+  fun shouldParseJapaneseAddressUsingClassMethod() {
+    val actual = JapaneseAddressParser.parse("")
+    assertEquals(expected = JapaneseAddress(), actual, "Failed to parse empty address")
   }
 }
