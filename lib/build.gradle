@@ -34,8 +34,11 @@ dependencies {
 
     // Use the JUnit 5 integration.
     testImplementation libs.junit.jupiter.engine
-
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+    // Use JUnit Json Params
+    testImplementation 'net.joshka:junit-json-params:5.10.2-r0'
+    testImplementation 'org.eclipse.parsson:parsson:1.1.1'
 
     // This dependency is exported to consumers, that is to say found on their compile classpath.
     api libs.commons.math3

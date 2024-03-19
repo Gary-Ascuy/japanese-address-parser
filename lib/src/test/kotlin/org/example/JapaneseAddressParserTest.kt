@@ -1,21 +1,17 @@
 package org.example
 
-import kotlin.test.Test
-import kotlin.test.assertTrue
+import net.joshka.junit.json.params.JsonFileSource
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.converter.ConvertWith
+import kotlin.test.assertEquals
 
 class JapaneseAddressParserTest {
-    @Test fun shouldParseJapaneseAddress() {
-        val parser = JapaneseAddressParser()
-        val address = parser.parse("")
+    private val parser = JapaneseAddressParser()
 
-        assertTrue(address.prefecture.isEmpty())
-        assertTrue(address.city.isEmpty())
-        assertTrue(address.town.isEmpty())
-
-        assertTrue(address.chome.isEmpty())
-        assertTrue(address.ban.isEmpty())
-        assertTrue(address.go.isEmpty())
-
-        assertTrue(address.left.isEmpty())
+    @ParameterizedTest(name = "{index} - {0}")
+    @JsonFileSource(resources = ["/json/parse-japanese-address-data-val.json"])
+    fun shouldParseJapaneseAddress(@ConvertWith(TestDataConverter::class) data: JapaneseAddressTestData) {
+        val address = parser.parse(data.text)
+        assertEquals(expected = data.result, actual = address)
     }
 }
