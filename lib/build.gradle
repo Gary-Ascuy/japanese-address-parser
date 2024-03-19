@@ -9,27 +9,35 @@ plugins {
     // Apply the org.jetbrains.kotlin.jvm Plugin to add support for Kotlin.
     alias(libs.plugins.jvm)
 
-    // Apply the java-library plugin for API and implementation separation.
     id 'java-library'
-
-    // Apply the Kotlin JVM plugin to add support for Kotlin.
     id 'maven-publish'
     id 'com.ncorti.ktfmt.gradle' version '0.17.0'
 }
 
 repositories {
-    
-    repositories {
-        mavenCentral()
-        maven {
-            name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/Gary-Ascuy/japanese-address-parser")
-            credentials {
-                username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
-                password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
-            }
-        }
+      mavenCentral()
+      maven {
+          name = "GitHubPackages"
+          url = uri("https://maven.pkg.github.com/Gary-Ascuy/japanese-address-parser")
+          credentials {
+              username = project.findProperty("gpr.user") ?: System.getenv("GITHUB_ACTOR")
+              password = project.findProperty("gpr.key") ?: System.getenv("GITHUB_TOKEN")
+          }
+      }
+}
+
+
+publishing {
+  repositories {
+    maven {
+      name = "GitHubPackages"
+      url = uri("https://maven.pkg.github.com/Gary-Ascuy/japanese-address-parser")
+      credentials {
+        username = project.findProperty("gpr.user") ?: System.getenv("GITHUB_ACTOR")
+        password = project.findProperty("gpr.key") ?: System.getenv("GITHUB_TOKEN")
+      }
     }
+  }
 }
 
 dependencies {
