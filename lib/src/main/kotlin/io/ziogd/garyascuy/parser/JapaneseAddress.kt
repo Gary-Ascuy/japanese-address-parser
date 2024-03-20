@@ -1,11 +1,12 @@
 package io.ziogd.garyascuy.parser
 
 data class JapaneseAddress(
-    val prefecture: String = "",
-    val city: String = "",
-    val town: String = "",
-    val chome: String = "",
-    val ban: String = "",
-    val go: String = "",
-    val left: String = "",
+    var postalCode: String = "",
+    var prefecture: String = "",
+    var city: String = "",
+    var town: String = "",
+    var chome: String = "",
+    var ban: String = "",
+    var go: String = "",
+    var left: String = "",
 )
