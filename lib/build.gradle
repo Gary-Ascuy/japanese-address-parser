@@ -11,7 +11,7 @@ plugins {
 }
 
 group 'io.ziogd.garyascuy'
-version '1.0.9'
+version getGithubVersion()
 
 repositories {
   mavenCentral()
@@ -48,9 +48,37 @@ publishing {
     }
   }
   publications {
-    gpr(MavenPublication) {
-      artifactId = "japanese-address-parser"
-      from(components.java)
+    mavenGitHubPublication(MavenPublication) {
+      from components.java
+      artifactId = 'japanese-address-parser'
+
+      pom {
+        name = 'Japanese Address Parser'
+        description = "Japanese Address Parser Library"
+        url = "https://github.com/Gary-Ascuy/japanese-address-parser"
+        licenses {
+          license {
+            name = "MIT License"
+            url = "https://github.com/Gary-Ascuy/japanese-address-parser/blob/main/LICENSE"
+          }
+        }
+        developers {
+          developer {
+            id = "gary-ascuy"
+            name = "Gary Ascuy"
+            email = "gary.ascuy@gmail.com"
+          }
+        }
+        scm {
+          connection = "scm:git:git@github.com:Gary-Ascuy/japanese-address-parser.git"
+          developerConnection = "scm:git:git@github.com:Gary-Ascuy/japanese-address-parser.git"
+          url = "https://github.com/Gary-Ascuy/japanese-address-parser"
+        }
+        issueManagement {
+          system = "GitHub"
+          url = "https://github.com/Gary-Ascuy/japanese-address-parser/issues"
+        }
+      }
     }
   }
 }
@@ -63,4 +91,11 @@ java {
 
 tasks.named('test') {
   useJUnitPlatform()
+}
+
+static def getGithubVersion() {
+  var type = System.getenv('GITHUB_REF_TYPE')
+  var name = System.getenv('GITHUB_REF_NAME')
+  var isValidVersion = type == "tag" && name != null && name.startsWith("v")
+  return isValidVersion ? name.replace("v", "") : '1.0.0-SNAPSHOT'
 }
