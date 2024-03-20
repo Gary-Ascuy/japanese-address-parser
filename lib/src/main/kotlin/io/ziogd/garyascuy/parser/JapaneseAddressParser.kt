@@ -19,7 +19,8 @@ class JapaneseAddressParser {
   private val townRegExp = "([\\p{InHiragana}\\p{InKatakana}\\p{IsHan}]+[町村区田])(.*)"
   private val townPattern = Pattern.compile(townRegExp)
 
-  private val chomeBanGoRegExp = "(\\d+)−(\\d+)−(\\d+)"
+  private val digit = "\\p{InHiragana}\\p{InKatakana}\\p{IsHan}\\d"
+  private val chomeBanGoRegExp = String.format("([%s]+)−([%s]+)−([%s]+)", digit, digit, digit)
   private val chomeBanGoPattern = Pattern.compile(chomeBanGoRegExp)
 
   fun parse(textAddress: String): JapaneseAddress {
